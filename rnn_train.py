@@ -160,15 +160,10 @@ for x, y_, epoch in txt.rnn_minibatch_sequencer(codetext, BATCHSIZE, SEQLEN, nb_
     # loop state around
     istate = ostate
     step += BATCHSIZE * SEQLEN
-    print (time.time())
 
 txt.print_learning_learned_comparison(x, y, l, bookranges, bl, acc, epoch_size, step, epoch)
 end = time.time()
 saved_file = saver.save(sess, 'checkpoints/rnn_train_' + timestamp, global_step=step)
 print("Saved file: " + saved_file)
 print(end - start)
-
-# all runs: SEQLEN = 30, BATCHSIZE = 100, ALPHASIZE = 98, INTERNALSIZE = 512, NLAYERS = 3
-# run 1477669632 decaying learning rate 0.001-0.0001-1e7 dropout 0.5: not good
-# run 1477670023 lr=0.001 no dropout: very good
 
